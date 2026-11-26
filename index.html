@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6ef">
+    <title>LED Grow Light Simulator</title>
+    <link rel="stylesheet" href="grow-light.css">
+    <script src="grow-light.js" defer></script>
+</head>
+<body>
+    <div class="app-shell">
+        <main>
+            <section class="intro">
+                <div class="intro-copy">
+                    <h1>Project Blue Rose: LED Grow Light Simulator<br><em>by Rushan Patel</em></h1>
+                </div>
+            </section>
+
+            <section class="simulator" aria-label="LED grow light simulator">
+                <aside class="control-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <h2>Choose a crop category</h2>
+                        </div>
+                        <span class="step-number">01 / 03</span>
+                    </div>
+
+                    <div class="field">
+                        <label for="crop-select">Which crop category?</label>
+                        <div class="select-wrap">
+                            <select id="crop-select">
+                                <option value="leafy">Leafy Greens</option>
+                                <option value="herbs">Culinary Herbs</option>
+                                <option value="vine">Fruiting Vine Crops</option>
+                            </select>
+                            <span aria-hidden="true">⌄</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="stage-select">Growth stage</label>
+                        <div class="select-wrap">
+                            <select id="stage-select"></select>
+                            <span aria-hidden="true">⌄</span>
+                        </div>
+                    </div>
+
+                    <div class="field range-field">
+                        <div class="range-label">
+                            <label for="intensity">Light intensity</label>
+                            <output id="intensity-value" for="intensity">100%</output>
+                        </div>
+                        <input id="intensity" type="range" min="0" max="120" value="100" step="1">
+                        <div class="range-ends"><span>Gentler</span><span>Brighter</span></div>
+                    </div>
+
+                    <div class="field range-field">
+                        <div class="range-label">
+                            <label for="hours">Hours of light / day</label>
+                            <output id="hours-value" for="hours">17 h</output>
+                        </div>
+                        <input id="hours" type="range" min="0" max="20" value="17" step="1">
+                        <div class="range-ends"><span>16 hours</span><span>18 hours</span></div>
+                    </div>
+
+                    <div class="panel-foot">
+                        <span class="foot-icon" aria-hidden="true">*</span>
+                        <p>Real results vary with cultivar, fixture, distance, and growing conditions.</p>
+                    </div>
+                </aside>
+
+                <div class="results-panel" aria-live="polite">
+                    <div class="recipe-title">
+                        <p class="crop-kicker" id="recipe-kicker">LEAFY GREENS · SEEDLING</p>
+                    </div>
+                    <p class="recipe-description" id="recipe-description"></p>
+
+                    <div class="metrics">
+                        <article class="metric-card primary-metric">
+                            <div class="metric-heading"><span>ESTIMATED LIGHT AT CANOPY</span><span class="info-dot" title="Photosynthetic photon flux density">i</span></div>
+                            <div class="metric-value"><strong id="ppfd-value">125</strong><span>μmol/m²/s</span></div>
+                            <div class="metric-foot"><span class="metric-marker"></span><span id="ppfd-range">Target 100–150 μmol/m²/s</span></div>
+                        </article>
+                        <article class="metric-card">
+                            <div class="metric-heading"><span>DAILY LIGHT · ESTIMATE</span><span class="info-dot" title="Daily light integral">i</span></div>
+                            <div class="metric-value"><strong id="dli-value">7.7</strong><span>mol/m²/day</span></div>
+                            <div class="metric-foot"><span class="metric-marker marker-coral"></span><span id="hours-range">DLI target 6–10 mol/m²/day</span></div>
+                        </article>
+                    </div>
+
+                    <div class="recipe-context">
+                        <div><span>TIMELINE</span><strong id="stage-timeline"></strong></div>
+                        <div class="crop-examples"><span>EXAMPLE CROPS IN THIS CATEGORY</span><strong id="crop-examples"></strong></div>
+                    </div>
+
+                    <section class="spectrum-card" aria-labelledby="spectrum-heading">
+                        <div class="spectrum-heading">
+                            <div>
+                                <p class="eyebrow">SPECTRUM MIX</p>
+                                <h3 id="spectrum-heading">LED channel balance</h3>
+                            </div>
+                            <span class="mix-total">100% <span>total</span></span>
+                        </div>
+                        <div class="spectrum-track" id="spectrum-track" role="img" aria-label="LED channel mix"></div>
+                        <div class="channel-legend" id="channel-legend"></div>
+                        <div class="light-preview-section">
+                            <div class="light-preview-heading">
+                                <span>LIGHT APPEARANCE</span>
+                                <span>Approximate color</span>
+                            </div>
+                            <div class="light-preview" id="light-preview" role="img" aria-label="Approximate LED light color"></div>
+                        </div>
+                    </section>
+
+                    <div class="results-bottom">
+                        <div class="stage-note"><span aria-hidden="true">↗</span><span id="stage-note"></span></div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="citations" aria-labelledby="citations-heading">
+                <h2 id="citations-heading">Citations Consulted</h2>
+                <ol>
+                    <li>Jeong, S. J., Niu, G., Zhen, S., &amp; Masabni, J. (2024). The interactive effects between far-red light and temperature on lettuce growth and morphology diminish at high light intensity. <cite>Frontiers in Plant Science, 15</cite>, Article 1497672. doi.org</li>
+                    <li>Johkan, M., Shoji, K., Goto, F., Hashida, S., &amp; Yoshihara, T. (2010). Blue light-emitting diode light irradiation of seedlings improves seedling quality and growth after transplanting in red leaf lettuce. <cite>HortScience, 45</cite>(12), 1809–1814. doi.org</li>
+                    <li>Ke, X., Yoshida, H., Hikosaka, S., &amp; Goto, E. (2023). Photosynthetic photon flux density affects fruit biomass radiation-use efficiency of dwarf tomatoes under LED light at the reproductive growth stage. <cite>Frontiers in Plant Science, 14</cite>, Article 1076423. doi.org</li>
+                    <li>Kong, Y., &amp; Nemali, K. (2022). Far-red light effects on lettuce growth and morphology in indoor production are cultivar specific. <cite>Plants, 11</cite>(20), Article 2714. doi.org</li>
+                    <li>Mullins, C., Vallotton, A., Latimer, J., Sperry, T., &amp; Scoggins, H. (2023). <cite>Hydroponic production of edible crops: Deep water culture (DWC) systems</cite> (Publication SPES-464NP). Virginia Cooperative Extension. vt.edu</li>
+                    <li>Naznin, M. T., Lefsrud, M., Gravel, V., &amp; Azad, M. O. K. (2019). Blue light added with red LEDs enhance growth characteristics, pigments content, and antioxidant capacity in lettuce, spinach, kale, basil, and sweet pepper in a controlled environment. <cite>Plants, 8</cite>(4), Article 93. doi.org</li>
+                    <li>Tabbert, J. M., Riewe, D., &amp; Schulz, H. (2019). <cite>Basil cultivation without sunlight: Proceedings in LED technology.</cite> 2nd International Plant Spectroscopy Conference (IPSC), Julius Kühn-Institut, Berlin, Germany. openagrar.de</li>
+                </ol>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
